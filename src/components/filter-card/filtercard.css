@@ -1,0 +1,38 @@
+.filter-content {
+  padding: 0.4rem 0.6rem;
+  background-color: #fff;
+  box-shadow: 2px 2px 24px rgba(0, 0, 0, 0.08);
+  top: 3rem;
+  left: 0;
+ 
+  z-index: 1000;
+
+}
+
+.filter-content .form-control {
+    display: flex;
+    align-items: center;
+    gap:0.4rem;
+    padding:0.2rem 0
+}
+
+.filter-content .form-control label{
+    font-size: 0.8rem;
+    width: 80px;
+}
+
+.filter-footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top:0.6rem
+}
+
+input {
+  background-color: #f9fafa;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 0.6px solid #cfd0d3;
+  width: 100%;
+  box-sizing: border-box;
+}
