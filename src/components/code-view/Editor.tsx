@@ -4,7 +4,6 @@ import Controls from "./Controls";
 import { usePython } from "react-py";
 import CodeEditor from "./CodeEditor";
 import { ArrowPathIcon, PlayIcon, StopIcon } from "@heroicons/react/24/solid";
-import CSVReader from "react-csv-reader";
 
 interface Props {
   input: string;
@@ -13,8 +12,11 @@ interface Props {
 
 const Editor: React.FC<Props> = ({ input, setInput }) => {
   const [showOutput, setShowOutput] = useState(false);
-    const [file, setFile] = useState("");
+  const [file, setFile] = useState("");
 
+  const name = "Drei";
+  const age = "24";
+  const obj = {name:'John', age:'24'};
 
   useEffect(() => {
     // setInput();
@@ -31,27 +33,25 @@ const Editor: React.FC<Props> = ({ input, setInput }) => {
     interruptExecution,
   } = usePython();
 
-  function run() {
-//     // Set the input variable in Python
-//     const code = `name = '${name}' 
-
-// ${input}
-// `;
-    runPython(input);
-    setShowOutput(true);
-  }
-  const changeHandler = (e:any) => {
-    // Passing file data (event.target.files[0]) to parse using Papa.parse
-
-    setFile(e.target.files[0]);
-  };
-
-  
-
-  function read(data: any, fileInfo: any) {
-    const file = readFile(file);
+  function read() {
+    const file = readFile("./convertcsv.csv");
     console.log(file);
   }
+
+  useEffect(() => {
+    read();
+  }, []);
+
+  function run() {
+    //     // Set the input variable in Python
+    const code = `input = '${JSON.stringify(obj)}' 
+
+${input}
+`;
+    runPython(code);
+    setShowOutput(true);
+  }
+
   function stop() {
     interruptExecution();
     setShowOutput(false);
@@ -64,10 +64,6 @@ const Editor: React.FC<Props> = ({ input, setInput }) => {
 
   return (
     <div className="relative mb-10 flex flex-col">
-      <CSVReader
-        parserOptions={{ header: true }}
-        onFileLoaded={changeHandler}
-      />
       <Controls
         items={[
           {
