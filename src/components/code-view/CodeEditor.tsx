@@ -24,6 +24,7 @@ const CodeEditor: React.FC<Props> = ({ setInput, input }) => {
       value={input}
       name="code-editor"
       editorProps={{ $blockScrolling: true }}
+      style={{width:'100%',}}
     />
   );
 };

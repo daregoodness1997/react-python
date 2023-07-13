@@ -8,6 +8,7 @@ import Pill from "./components/pill/Pill";
 import { AlgorithmMaker } from "./algo";
 import Editor from "./components/code-view/Editor";
 import { filtersData,data } from "./utils/data";
+
 interface ParseProps {
   income: number;
   expenses: number;
@@ -53,47 +54,56 @@ function App() {
     setParsedData(data);
   };
 
+  
+
   return (
     <PythonProvider>
-      <Editor input={input} setInput={setInput} />
-   
-      <CSVReader
-        parserOptions={{ header: true }}
-        onFileLoaded={changeHandler}
-      />
-      {/* <FileUpload onChange={changeHandler} /> */}
-      <div className="box-container">
+      <div>
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <Editor input={input} setInput={setInput} />
+
         <div>
-          <FilterCard label={filterName} />
-        </div>
-        <div>
-          <Chart
-            label={"Economic Simulator"}
-            data={data}
-            labels={[
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July",
-            ]}
-            datasets={[
-              {
-                label: "Homelessness",
-                data: homelessIndex,
-                borderColor: "rgb(255, 99, 132)",
-                backgroundColor: "rgba(255, 99, 132, 0.5)",
-              },
-            ]}
-          >
-            <div className="chart-flter-container ">
-              {filtersData.map((filter) => (
-                <Pill label={filter} onClick={() => setFilterName(filter)} />
-              ))}
+          <CSVReader
+            parserOptions={{ header: true }}
+            onFileLoaded={changeHandler}
+          />
+          <div className="box-container">
+            <div>
+              <FilterCard label={filterName} />
             </div>
-          </Chart>
+            <div>
+              <Chart
+                label={"Economic Simulator"}
+                data={data}
+                labels={[
+                  "January",
+                  "February",
+                  "March",
+                  "April",
+                  "May",
+                  "June",
+                  "July",
+                ]}
+                datasets={[
+                  {
+                    label: "Homelessness",
+                    data: homelessIndex,
+                    borderColor: "rgb(255, 99, 132)",
+                    backgroundColor: "rgba(255, 99, 132, 0.5)",
+                  },
+                ]}
+              >
+                <div className="chart-flter-container ">
+                  {filtersData.map((filter) => (
+                    <Pill
+                      label={filter}
+                      onClick={() => setFilterName(filter)}
+                    />
+                  ))}
+                </div>
+              </Chart>
+            </div>
+          </div>
         </div>
       </div>
     </PythonProvider>

@@ -1,5 +1,4 @@
-import React from "react";
-// import clsx from "clsx";
+import clsx from "clsx";
 
 interface ControlProps {
   items: {
@@ -25,14 +24,7 @@ export default function Controls(props: ControlProps) {
               type="button"
               onClick={item.onClick}
               disabled={item.disabled}
-            //   className={clsx(
-            //     "relative inline-flex items-center border border-none border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:z-10 focus:outline-none focus:ring-0",
-            //     !item.disabled
-            //       ? "opacity-75 hover:cursor-pointer hover:bg-gray-50 hover:opacity-100"
-            //       : "opacity-50 hover:cursor-not-allowed",
-            //     i === 0 && "rounded-l-md",
-            //     i === visibleItems.length - 1 && "rounded-r-md"
-            //   )}
+              className={`relative inline-flex items-center border border-none border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:z-10 focus:outline-none focus:ring-0`}
             >
               <item.icon
                 className="-ml-1 mr-2 h-5 w-5 text-gray-400"
